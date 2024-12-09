@@ -1,29 +1,35 @@
 package it.unibo.es1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogicsImpl implements Logics {
-
+	private final int size;
 	public LogicsImpl(int size) {
-		//TODO Auto-generated constructor stub
+		this.size=size;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'size'");
+		return size;	
 	}
 
 	@Override
 	public List<Integer> values() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'values'");
+		final List<Integer> list =new ArrayList<>();
+		for (int i=0;i<=this.size;i++){
+			list.add(i);
+		}
+		return list;
 	}
+
 
 	@Override
 	public List<Boolean> enablings() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'enablings'");
+		final List<Boolean> list = new ArrayList<>();
+		for (Jbutton butt : jbs) {
+			
+		}
 	}
 
 	@Override
