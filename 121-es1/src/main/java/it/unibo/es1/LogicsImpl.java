@@ -1,52 +1,45 @@
 package it.unibo.es1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LogicsImpl implements Logics {
-	private final int size;
+	private final List<Integer> values;
 	public LogicsImpl(int size) {
-		this.size=size;
+		this.values= new ArrayList<>(Collections.nCopies(size, 0));
 	}
 
 	@Override
 	public int size() {
-		return size;	
+		return this.values.size();
 	}
 
 	@Override
 	public List<Integer> values() {
-		final List<Integer> list =new ArrayList<>();
-		for (int i=0;i<=this.size;i++){
-			list.add(i);
-		}
-		return list;
+		return Collections.unmodifiableList(values);
 	}
 
 
 	@Override
 	public List<Boolean> enablings() {
-		final List<Boolean> list = new ArrayList<>();
-		for (Jbutton butt : jbs) {
-			
-		}
+		return values.stream().map(x -> x < values.size()).toList();
 	}
 
 	@Override
 	public int hit(int elem) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'hit'");
+		int index= this.values.get(elem);
+		this.values.set(elem, ++index);
+		return index;
 	}
-
 	@Override
 	public String result() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'result'");
+		return this.values.stream().map(String::valueOf).collect(Collectors.joining("|", "<<", ">>"));
 	}
 
 	@Override
 	public boolean toQuit() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'toQuit'");
+		return this.values.stream().allMatch(i->i==this.values.get(3));
 	}
 }
